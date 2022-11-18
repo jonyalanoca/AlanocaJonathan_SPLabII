@@ -1,0 +1,15 @@
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\pruebas.csproj.AssemblyReference.cache
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\pruebas.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\pruebas.AssemblyInfoInputs.cache
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\pruebas.AssemblyInfo.cs
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\pruebas.csproj.CoreCompileInputs.cache
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\pruebas.exe
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\pruebas.deps.json
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\pruebas.runtimeconfig.json
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\pruebas.dll
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\pruebas.pdb
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\pruebas.dll
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\refint\pruebas.dll
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\pruebas.pdb
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\pruebas.genruntimeconfig.cache
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\ref\pruebas.dll
