@@ -11,6 +11,9 @@ namespace pruebas
             //Serializador<Lapiz>.SerializarJason(l1, $"{str}\\enjason.txt");
             //Lapiz l2= Serializador<Lapiz>.DeserializarJason($"{str}\\enjason.txt");
             //Console.WriteLine(l2.Detalles());
+
+
+            /*
             Cartuchera<Utiles> c1 = new Cartuchera<Utiles>();
 
             GomaDAO gdao = new GomaDAO();
@@ -26,6 +29,11 @@ namespace pruebas
             {
                 Console.WriteLine(i.Detalles());
             }
+            */
+            Sacapuntas l1 = new Sacapuntas(3000, 20000, "tophouse", Materiales.Metal);
+            SacapuntasDAO dao = new SacapuntasDAO();
+            dao.EliminarSPunta(l1);
+
            
         }
         
