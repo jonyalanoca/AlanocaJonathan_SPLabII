@@ -13,3 +13,6 @@ C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\refint\prueb
 C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\pruebas.pdb
 C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\pruebas.genruntimeconfig.cache
 C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\ref\pruebas.dll
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\Entidades.dll
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\Entidades.pdb
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\pruebas.csproj.CopyComplete

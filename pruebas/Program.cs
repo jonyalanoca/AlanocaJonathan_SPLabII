@@ -1,26 +1,17 @@
-﻿namespace pruebas
+﻿using Entidades;
+
+namespace pruebas
 {
     public class Program
     {
         static void Main(string[] args)
         {
-            string mensaje="";
-            int numero1 = 10;
-            int numero2 = 0;
-            try
-            {
-                if (numero2 == 0)
-                {
-                    throw new Exception("div o");
-                }
-                mensaje = (numero1 / numero2).ToString();
-            }
-            catch(Exception dc)
-            {
-                Console.WriteLine(dc.Message);
-            }
-            Console.WriteLine(mensaje);
-            
+            List<string> tipos = new() { "lapiz, lapicera, tintachina" };
+            Lapiz l1 = new Lapiz(12, "faber", ConsoleColor.Blue);
+            string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            //Serializador<Lapiz>.SerializarJason(l1, $"{str}\\enjason.txt");
+            Lapiz l2= Serializador<Lapiz>.DeserializarJason($"{str}\\enjason.txt");
+            Console.WriteLine(l2.Detalles());
         }
         
     }

@@ -18,6 +18,7 @@ namespace Entidades
         public Cartuchera()
         {
             this.capacidad = 20;//ver si esto
+            this.listaUtiles = new List<T>();
         }
         public float PrecioTotatCartuchera
         {
