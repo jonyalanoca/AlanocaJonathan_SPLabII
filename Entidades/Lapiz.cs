@@ -9,17 +9,14 @@ namespace Entidades
     public class Lapiz:Utiles,ISerializa,IDeserializa
     {
         private ConsoleColor color;
-        public Lapiz()
+        public Lapiz()//probar luego si podemos ponerlo en privado (para serializar o deserealizar)
         {
         }
-        public Lapiz(float precio):base(precio)
-        { 
-        }
-        public Lapiz(float precio, string marca) : base(precio,marca)
+        public Lapiz(int id, float precio, string marca) : base(id, precio,marca)
         {
-
+            this.color = ConsoleColor.Black;
         }
-        public Lapiz(float precio, string marca, ConsoleColor color) : this(precio, marca) {
+        public Lapiz(int id, float precio, string marca, ConsoleColor color) : this(id,precio, marca) {
             this.color = color;
         }
 

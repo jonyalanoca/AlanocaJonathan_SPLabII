@@ -16,3 +16,9 @@ C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\ref\pruebas.
 C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\Entidades.dll
 C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\Entidades.pdb
 C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\obj\Debug\net6.0\pruebas.csproj.CopyComplete
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\jonya\Desktop\SegundoParcialLabII\pruebas\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

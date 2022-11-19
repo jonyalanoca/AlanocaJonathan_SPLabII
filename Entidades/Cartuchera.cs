@@ -20,6 +20,7 @@ namespace Entidades
             this.capacidad = 20;//ver si esto
             this.listaUtiles = new List<T>();
         }
+        public List<T> ListaUtiles { get => this.listaUtiles; set => this.listaUtiles = value; }
         public float PrecioTotatCartuchera
         {
             

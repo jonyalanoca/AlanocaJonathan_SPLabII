@@ -8,29 +8,23 @@ namespace Entidades
 {
     public class Goma:Utiles
     {
-        private List<string> listaAlcanceGoma;
-        public Goma(float precio) : base(precio)
+        private Tipos tipo;
+        public Goma(int id, float precio, string marca) :base(id,precio, marca)
         {
-            this.listaAlcanceGoma = new List<string>();
+            this.tipo = Tipos.SinDefinir;
         }
-        public Goma(float precio, string marca) :base(precio, marca)
+        public Goma(int id,float precio, string marca, Tipos tipo):this(id,precio, marca)
         {
-            this.listaAlcanceGoma = new List<string>();
+            this.tipo = tipo;
         }
-        public Goma(float precio, string marca, List<string> lGoma):this(precio, marca)
-        {
-            this.listaAlcanceGoma = lGoma;
-        }
+
+        public Tipos Tipo { get => this.tipo; set => this.tipo = value; }
 
         public override string Detalles()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.Detalles());
-            sb.Append($"-Material que borra:");
-            foreach (string i in this.listaAlcanceGoma)
-            {
-                sb.Append($" {i}");
-            }
+            sb.Append($"-Tipo de goma: {this.tipo}");
             return sb.ToString();
         }
     }

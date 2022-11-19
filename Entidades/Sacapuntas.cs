@@ -9,18 +9,19 @@ namespace Entidades
 {
     public class Sacapuntas:Utiles
     {
-        private string material;
-        public Sacapuntas(float precio) : base(precio)
-        {
-        }
-        public Sacapuntas(float precio, string marca) : base(precio, marca)
-        {
+        private Materiales material;
 
+        public Sacapuntas(int id, float precio, string marca) : base(id, precio, marca)
+        {
+            this.material = Materiales.SinDefinir;
         }
-        public Sacapuntas(float precio, string marca, string material):this(precio, marca)
+        public Sacapuntas(int id, float precio, string marca, Materiales material):this(id,precio, marca)
         {
             this.material = material;
         }
+
+        public Materiales Material { get => material; set => material = value; }
+
         public override string Detalles()
         {
             StringBuilder sb = new StringBuilder();
