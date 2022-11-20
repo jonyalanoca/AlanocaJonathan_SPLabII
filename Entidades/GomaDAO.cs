@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Microsoft.VisualBasic;
 using System.Xml;
+using System.Diagnostics;
 
 namespace Entidades
 {
-    public class GomaDAO
+    public static class GomaDAO
     {
-        public bool LeerGoma(ref Cartuchera<Utiles> cartuchera)// corregir aca
+        public static bool LeerGoma(ref Cartuchera<Utiles> cartuchera)
         {
             bool todoOk = true;
             SqlConnection conSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");
@@ -30,7 +31,8 @@ namespace Entidades
                     int auxId = (int)sr["ID_GOMA"];
                     float auxPrecio = float.Parse(sr["PRECIO"].ToString());
                     string auxMarca = sr["MARCA"].ToString();
-                    cartuchera.ListaUtiles.Add(new Goma(auxId, auxPrecio, auxMarca, auxTipo));
+                    Goma auxGoma = new Goma(auxId, auxPrecio, auxMarca, auxTipo);
+                    cartuchera.ListaUtiles.Add(auxGoma);
                 }
             }
             catch (Exception ex)
@@ -46,7 +48,7 @@ namespace Entidades
             }
             return todoOk;
         }
-        public bool AgregarGoma(Goma goma)
+        public static bool AgregarGoma(Goma goma)
         {
             bool todoOK = true;
             SqlConnection conexionSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");
@@ -71,7 +73,7 @@ namespace Entidades
             return true;
         }
         
-        public bool ModificarGoma(Goma goma)
+        public static bool ModificarGoma(Goma goma)
         {
             bool todoOK = true;
             SqlConnection conexionSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");
@@ -96,7 +98,7 @@ namespace Entidades
             }
             return true;
         }
-        public bool EliminarGoma(Goma goma)
+        public static bool EliminarGoma(Goma goma)
         {
             bool todoOK = true;
             SqlConnection conexionSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");

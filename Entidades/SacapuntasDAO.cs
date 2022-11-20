@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class SacapuntasDAO
+    public static class SacapuntasDAO
     {
-        public bool LeerSPuntas(ref Cartuchera<Utiles> cartuchera)// corregir aca
+        public static bool LeerSPuntas(ref Cartuchera<Utiles> cartuchera)
         {
             bool todoOk = true;
             SqlConnection conSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");
@@ -28,7 +29,8 @@ namespace Entidades
                     int auxId = (int)sr["ID_SPUNTA"];
                     float auxPrecio = float.Parse(sr["PRECIO"].ToString());
                     string auxMarca = sr["MARCA"].ToString();
-                    cartuchera.ListaUtiles.Add(new Sacapuntas(auxId, auxPrecio, auxMarca, auxMaterial));
+                    Sacapuntas auxSacaPuntas = new Sacapuntas(auxId, auxPrecio, auxMarca, auxMaterial);
+                    cartuchera.ListaUtiles.Add(auxSacaPuntas);
                 }
             }
             catch (Exception ex)
@@ -44,7 +46,7 @@ namespace Entidades
             }
             return todoOk;
         }
-        public bool AgregarSPunta(Sacapuntas sacapunta)
+        public static bool AgregarSPunta(Sacapuntas sacapunta)
         {
             bool todoOK = true;
             SqlConnection conexionSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");
@@ -69,7 +71,7 @@ namespace Entidades
             return true;
         }
 
-        public bool ModificarSPunta(Sacapuntas sacapunta)
+        public static bool ModificarSPunta(Sacapuntas sacapunta)
         {
             bool todoOK = true;
             SqlConnection conexionSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");
@@ -94,7 +96,7 @@ namespace Entidades
             }
             return true;
         }
-        public bool EliminarSPunta(Sacapuntas sacapunta)
+        public static bool EliminarSPunta(Sacapuntas sacapunta)
         {
             bool todoOK = true;
             SqlConnection conexionSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");

@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class LapizDAO
+    public static class LapizDAO
     {
-        public bool LeerLapiz(ref Cartuchera<Utiles> cartuchera)// corregir aca
+        public static bool LeerLapiz(ref Cartuchera<Utiles> cartuchera)
         {
             bool todoOk = true;
             SqlConnection conSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");
@@ -18,7 +19,6 @@ namespace Entidades
             comando.CommandType = System.Data.CommandType.Text;
             conSql.Open();
             SqlDataReader sr = comando.ExecuteReader();
-
             try
             {
                 while (sr.Read())
@@ -28,7 +28,9 @@ namespace Entidades
                     int auxId = (int)sr["ID_LAPIZ"];
                     float auxPrecio = float.Parse(sr["PRECIO"].ToString());
                     string auxMarca = sr["MARCA"].ToString();
-                    cartuchera.ListaUtiles.Add(new Lapiz(auxId, auxPrecio, auxMarca, auxColor));
+                    Lapiz lapizAux = new Lapiz(auxId, auxPrecio, auxMarca, auxColor);
+                    cartuchera.ListaUtiles.Add(lapizAux);
+
                 }
             }
             catch (Exception ex)
@@ -44,7 +46,7 @@ namespace Entidades
             }
             return todoOk;
         }
-        public bool AgregarLapiz(Lapiz lapiz)
+        public static bool AgregarLapiz(Lapiz lapiz)
         {
             bool todoOK = true;
             SqlConnection conexionSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");
@@ -69,7 +71,7 @@ namespace Entidades
             return true;
         }
 
-        public bool ModificarLapiz(Lapiz lapiz)
+        public static bool ModificarLapiz(Lapiz lapiz)
         {
             bool todoOK = true;
             SqlConnection conexionSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");
@@ -94,7 +96,7 @@ namespace Entidades
             }
             return true;
         }
-        public bool EliminarLapiz(Lapiz lapiz)
+        public static bool EliminarLapiz(Lapiz lapiz)
         {
             bool todoOK = true;
             SqlConnection conexionSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");

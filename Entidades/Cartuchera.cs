@@ -17,9 +17,10 @@ namespace Entidades
         private int capacidad;
         public Cartuchera()
         {
-            this.capacidad = 20;//ver si esto
+            this.capacidad = 10;//ver si esto
             this.listaUtiles = new List<T>();
         }
+   
         public List<T> ListaUtiles { get => this.listaUtiles; set => this.listaUtiles = value; }
         public float PrecioTotatCartuchera
         {
@@ -52,7 +53,25 @@ namespace Entidades
             }
             return "Se agrego el util a la cartuchera";
         }
-
+        public static string  operator-(Cartuchera<T> cartuchera, T util)
+        {
+            if (cartuchera.ListaUtiles.Remove(util))
+            {
+                return "Se borro el registro";
+            }
+            return "No se encontro el util\nNo hubo cambios";
+        }
+        public Utiles BuscarUtilPorId(int id)
+        {
+            foreach(var i in listaUtiles)
+            {
+                if (id == i.Id)
+                {
+                    return i;
+                }
+            }
+            throw new Exception("No se encontro ningun ");
+        }
     }
 
 }

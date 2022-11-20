@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,6 +30,10 @@ namespace Entidades
             sb.Append(base.Detalles());
             sb.AppendLine($"-Color: {this.color}");
             return sb.ToString();
+        }
+        public void CompletarTabla( )
+        {
+           
         }
 
     }
