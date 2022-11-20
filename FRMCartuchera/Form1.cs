@@ -6,6 +6,7 @@ using System.Windows.Forms.VisualStyles;
 using System.Data;
 using System.Runtime.Intrinsics.X86;
 using Microsoft.VisualBasic.Devices;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace FRMCartuchera
 {
@@ -14,11 +15,13 @@ namespace FRMCartuchera
         private bool menuDesplegado = false;
         private Cartuchera<Utiles> cartuchera;
         private bool modificacionEnCurso;
+        private bool agregarEnCurso;
         public frmCartuchera()
         {
             InitializeComponent();
             this.cartuchera = new Cartuchera<Utiles>();
             this.modificacionEnCurso = false;
+            this.agregarEnCurso = false;
         }
 
         private void frmCartuchera_Load(object sender, EventArgs e)
@@ -98,11 +101,22 @@ namespace FRMCartuchera
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmOpcion opciones = new frmOpcion();
-            this.Hide();
-            opciones.ShowDialog();
-            this.Show();
-            
+            if (agregarEnCurso == false)
+            {
+                frmOpcion frmOp = new frmOpcion();
+                this.Hide();
+                frmOp.ShowDialog();
+                this.Show();
+
+                VisibleComboBox(frmOp.Opcion);
+                abilitarDesabilitarTodo();
+                VisibleComboBox(frmOp.Opcion);
+                this.agregarEnCurso = true;
+            }
+            else
+            {
+                MessageBox.Show("Hay una operacion en curso.\nTermine con operacion actual antes de continuar.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -112,10 +126,11 @@ namespace FRMCartuchera
                 int auxId = ObtenerIdDeTabla();
                 CompletarDatosPorId(auxId);
                 modificacionEnCurso = true;
+                abilitarDesabilitarTodo();
             }
             else
             {
-                MessageBox.Show("Hat una modificación en curso.\nTermine con la modificacion antes de continuar.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Hay una modificación en curso.\nTermine con la modificacion antes de continuar.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -215,13 +230,13 @@ namespace FRMCartuchera
             this.cmbColor.Visible = false;
             switch (opcion)
             {
-                case "tipo":
+                case "goma":
                     this.cmbTipo.Visible = true;
                     break;
-                case "material":
+                case "sacapuntas":
                     this.cmbMaterial.Visible = true;
                     break;
-                case "color":
+                case "lapiz":
                     this.cmbColor.Visible = true;
                     break;
             }
@@ -229,43 +244,65 @@ namespace FRMCartuchera
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            abilitarDesabilitarTodo();
-            modificacionEnCurso = false;
-            int auxId = int.Parse(lblId_data.Text);
-            Utiles auxUtil=cartuchera.BuscarUtilPorId(auxId);
-            RealizarCambio(auxUtil);
-            if (auxId >= 1000 && auxId < 2000)
+
+            if (modificacionEnCurso==true)
             {
-                GomaDAO.ModificarGoma((Goma)auxUtil);
+                modificacionEnCurso = false;
+                int auxId = int.Parse(lblId_data.Text);
+                Utiles auxUtil = cartuchera.BuscarUtilPorId(auxId);
+                RealizarCambio(auxUtil);
+                if (auxId >= 1000 && auxId < 2000)
+                {
+                    GomaDAO.ModificarGoma((Goma)auxUtil);
+                }
+                else if (auxId >= 2000 && auxId < 3000)
+                {
+                    LapizDAO.ModificarLapiz((Lapiz)auxUtil);
+                }
+                else if (auxId >= 3000)
+                {
+                    SacapuntasDAO.ModificarSPunta((Sacapuntas)auxUtil);
+                }
+
             }
-            else if (auxId >= 2000 && auxId < 3000)
+            else if (agregarEnCurso == true)
             {
-                LapizDAO.ModificarLapiz((Lapiz)auxUtil);
-            }
-            else if (auxId >= 3000)
-            {
-                SacapuntasDAO.ModificarSPunta((Sacapuntas)auxUtil);
+                Utiles nuevo=null;
+                int idAux = -1;
+                agregarEnCurso = false;
+                if (cmbColor.Visible==true)
+                {
+                    idAux=LapizDAO.UltimoId();
+                    ConsoleColor colorAux;
+                    Enum.TryParse<ConsoleColor>(cmbColor.SelectedValue.ToString(), out colorAux);
+                    nuevo = new Lapiz(idAux, tckPrecio.Value, txtMarca.Text, colorAux);
+
+                    LapizDAO.AgregarLapiz((Lapiz)nuevo);
+                }
+                else if (cmbMaterial.Visible == true)
+                {
+                    idAux = SacapuntasDAO.UltimoId();
+                    Materiales materialAux;
+                    Enum.TryParse<Materiales>(cmbMaterial.SelectedValue.ToString(), out materialAux);
+                    nuevo = new Sacapuntas(idAux, tckPrecio.Value, txtMarca.Text, materialAux);
+
+                    SacapuntasDAO.AgregarSPunta((Sacapuntas)nuevo);
+                }
+                else if (cmbTipo.Visible == true)
+                {
+                    idAux = GomaDAO.UltimoId();
+                    Tipos tipoAux;
+                    Enum.TryParse<Tipos>(cmbTipo.SelectedValue.ToString(), out tipoAux);
+                    nuevo = new Goma(idAux, tckPrecio.Value, txtMarca.Text, tipoAux);
+
+                    GomaDAO.AgregarGoma((Goma)nuevo);
+                }
+                MessageBox.Show(cartuchera + nuevo, "Cambios importantes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             dgvTabla.Rows.Clear();
             CompletarTabla();
-
-
-
-
-            //if (auxId >= 1000 && auxId < 2000)
-            //{
-
-            //}
-            //else if (auxId >= 2000 && auxId < 3000)
-            //{
-
-            //}
-            //else if (auxId >= 3000)
-            //{
-
-            //}
-
-
+            abilitarDesabilitarTodo();
+            ResetearCampos();
         }
         private void CompletarDatosPorId(int auxId)
         {
@@ -277,19 +314,18 @@ namespace FRMCartuchera
             if (auxId >= 1000 && auxId < 2000)
             {
                 this.cmbTipo.Text = ((Goma)auxUtil).Tipo.ToString();
-                VisibleComboBox("tipo");
+                VisibleComboBox("goma");
             }
             else if (auxId >= 2000 && auxId < 3000)
             {
                 this.cmbColor.Text = ((Lapiz)auxUtil).Color.ToString();
-                VisibleComboBox("color");
+                VisibleComboBox("lapiz");
             }
             else if (auxId >= 3000)
             {
                 this.cmbMaterial.Text = ((Sacapuntas)auxUtil).Material.ToString();
-                VisibleComboBox("material");
+                VisibleComboBox("sacapuntas");
             }
-            abilitarDesabilitarTodo();
         }
         private void ResetearCampos()
         {
@@ -330,6 +366,7 @@ namespace FRMCartuchera
         private void btnDescartar_Click(object sender, EventArgs e)
         {
             this.modificacionEnCurso = false;
+            this.agregarEnCurso = false;
             ResetearCampos();
             abilitarDesabilitarTodo();
         }

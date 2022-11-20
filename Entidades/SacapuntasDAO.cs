@@ -118,5 +118,33 @@ namespace Entidades
             }
             return todoOK;
         }
+        public static int UltimoId()
+        {
+            int id = -1;
+            SqlConnection conSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");
+            string consulta = "SELECT MAX(ID_SPUNTA)+1 FROM SACAPUNTAS";
+            SqlCommand comando = new SqlCommand(consulta, conSql);
+            comando.CommandType = System.Data.CommandType.Text;
+            conSql.Open();
+            SqlDataReader sr = comando.ExecuteReader();
+
+            try
+            {
+                sr.Read();
+                id = int.Parse(sr[0].ToString());
+            }
+            catch(Exception ex)
+            {
+                id = 3000;
+            }
+            finally
+            {
+                if (conSql.State == System.Data.ConnectionState.Open)
+                {
+                    conSql.Close();
+                }
+            }
+            return id;
+        }
     }
 }

@@ -44,9 +44,9 @@ namespace Entidades
                 }
                 else if (cartuchera.PrecioTotatCartuchera + util.Precio > 500)
                 {
-                    cartuchera.EventoPrecio.Invoke("asd");
+                    //cartuchera.EventoPrecio.Invoke("asd");
                 }
-                    cartuchera.listaUtiles.Add(util);
+                cartuchera.listaUtiles.Add(util);
             }catch(Exception ex)
             {
                 return ex.Message;
