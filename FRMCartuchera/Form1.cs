@@ -29,6 +29,10 @@ namespace FRMCartuchera
                 MessageBox.Show("Error en la carga de la base de datos", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             CompletarTabla();
+
+            cmbColor.DataSource = Enum.GetValues(typeof(ConsoleColor));
+            cmbMaterial.DataSource= Enum.GetValues(typeof(Materiales));
+            cmbTipo.DataSource= Enum.GetValues(typeof(Tipos));
         }
         public void Notificar(string mensaje)
         {
@@ -89,12 +93,16 @@ namespace FRMCartuchera
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+            frmOpcion opciones = new frmOpcion();
+            this.Hide();
+            opciones.ShowDialog();
+            this.Show();
+            
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Normal;
+            
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -133,6 +141,45 @@ namespace FRMCartuchera
         {
             int nroFila = dgvTabla.CurrentRow.Index;
             return (int)dgvTabla.Rows[nroFila].Cells[0].Value;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            if(this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnMenuSerializar_Click(object sender, EventArgs e)
+        {
+            this.btnSerializar.Visible = !this.btnSerializar.Visible;
+            this.btnDeserializar.Visible = !this.btnDeserializar.Visible;
+        }
+
+        private void tckPrecio_Scroll(object sender, EventArgs e)
+        {
+            lblPrecio_Data.Text = tckPrecio.Value.ToString();
         }
     }
 }
