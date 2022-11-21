@@ -36,6 +36,10 @@
             this.btnMaximizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.lblTotalPrecio_data = new System.Windows.Forms.Label();
+            this.lblRegistros_data = new System.Windows.Forms.Label();
+            this.lblTotalPesos = new System.Windows.Forms.Label();
+            this.lblRegistrosn = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTemporizador = new System.Windows.Forms.Label();
             this.btnHamburguesa = new System.Windows.Forms.Button();
@@ -187,6 +191,10 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.pnlMenu.Controls.Add(this.lblTotalPrecio_data);
+            this.pnlMenu.Controls.Add(this.lblRegistros_data);
+            this.pnlMenu.Controls.Add(this.lblTotalPesos);
+            this.pnlMenu.Controls.Add(this.lblRegistrosn);
             this.pnlMenu.Controls.Add(this.label1);
             this.pnlMenu.Controls.Add(this.lblTemporizador);
             this.pnlMenu.Controls.Add(this.btnHamburguesa);
@@ -203,6 +211,51 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(240, 534);
             this.pnlMenu.TabIndex = 3;
+            this.pnlMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMenu_Paint);
+            // 
+            // lblTotalPrecio_data
+            // 
+            this.lblTotalPrecio_data.AutoSize = true;
+            this.lblTotalPrecio_data.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalPrecio_data.ForeColor = System.Drawing.Color.White;
+            this.lblTotalPrecio_data.Location = new System.Drawing.Point(143, 432);
+            this.lblTotalPrecio_data.Name = "lblTotalPrecio_data";
+            this.lblTotalPrecio_data.Size = new System.Drawing.Size(15, 17);
+            this.lblTotalPrecio_data.TabIndex = 20;
+            this.lblTotalPrecio_data.Text = "0";
+            // 
+            // lblRegistros_data
+            // 
+            this.lblRegistros_data.AutoSize = true;
+            this.lblRegistros_data.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblRegistros_data.ForeColor = System.Drawing.Color.White;
+            this.lblRegistros_data.Location = new System.Drawing.Point(143, 415);
+            this.lblRegistros_data.Name = "lblRegistros_data";
+            this.lblRegistros_data.Size = new System.Drawing.Size(15, 17);
+            this.lblRegistros_data.TabIndex = 19;
+            this.lblRegistros_data.Text = "0";
+            // 
+            // lblTotalPesos
+            // 
+            this.lblTotalPesos.AutoSize = true;
+            this.lblTotalPesos.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalPesos.ForeColor = System.Drawing.Color.White;
+            this.lblTotalPesos.Location = new System.Drawing.Point(90, 432);
+            this.lblTotalPesos.Name = "lblTotalPesos";
+            this.lblTotalPesos.Size = new System.Drawing.Size(50, 17);
+            this.lblTotalPesos.TabIndex = 18;
+            this.lblTotalPesos.Text = "$ Total:";
+            // 
+            // lblRegistrosn
+            // 
+            this.lblRegistrosn.AutoSize = true;
+            this.lblRegistrosn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblRegistrosn.ForeColor = System.Drawing.Color.White;
+            this.lblRegistrosn.Location = new System.Drawing.Point(74, 415);
+            this.lblRegistrosn.Name = "lblRegistrosn";
+            this.lblRegistrosn.Size = new System.Drawing.Size(66, 17);
+            this.lblRegistrosn.TabIndex = 17;
+            this.lblRegistrosn.Text = "Registros:";
             // 
             // label1
             // 
@@ -251,7 +304,7 @@
             this.btnTickets.ForeColor = System.Drawing.Color.White;
             this.btnTickets.Image = ((System.Drawing.Image)(resources.GetObject("btnTickets.Image")));
             this.btnTickets.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTickets.Location = new System.Drawing.Point(3, 250);
+            this.btnTickets.Location = new System.Drawing.Point(3, 200);
             this.btnTickets.Name = "btnTickets";
             this.btnTickets.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
             this.btnTickets.Size = new System.Drawing.Size(240, 44);
@@ -272,7 +325,7 @@
             this.btnDeserializar.ForeColor = System.Drawing.Color.White;
             this.btnDeserializar.Image = ((System.Drawing.Image)(resources.GetObject("btnDeserializar.Image")));
             this.btnDeserializar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeserializar.Location = new System.Drawing.Point(3, 392);
+            this.btnDeserializar.Location = new System.Drawing.Point(3, 350);
             this.btnDeserializar.Name = "btnDeserializar";
             this.btnDeserializar.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
             this.btnDeserializar.Size = new System.Drawing.Size(240, 44);
@@ -294,7 +347,7 @@
             this.btnSerializar.ForeColor = System.Drawing.Color.White;
             this.btnSerializar.Image = ((System.Drawing.Image)(resources.GetObject("btnSerializar.Image")));
             this.btnSerializar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSerializar.Location = new System.Drawing.Point(3, 346);
+            this.btnSerializar.Location = new System.Drawing.Point(3, 300);
             this.btnSerializar.Name = "btnSerializar";
             this.btnSerializar.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
             this.btnSerializar.Size = new System.Drawing.Size(240, 44);
@@ -315,7 +368,7 @@
             this.btnMenuSerializar.ForeColor = System.Drawing.Color.White;
             this.btnMenuSerializar.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuSerializar.Image")));
             this.btnMenuSerializar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenuSerializar.Location = new System.Drawing.Point(3, 300);
+            this.btnMenuSerializar.Location = new System.Drawing.Point(3, 250);
             this.btnMenuSerializar.Name = "btnMenuSerializar";
             this.btnMenuSerializar.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
             this.btnMenuSerializar.Size = new System.Drawing.Size(240, 44);
@@ -335,7 +388,7 @@
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(3, 200);
+            this.btnEliminar.Location = new System.Drawing.Point(3, 150);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
             this.btnEliminar.Size = new System.Drawing.Size(240, 44);
@@ -355,7 +408,7 @@
             this.btnModificar.ForeColor = System.Drawing.Color.White;
             this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(3, 150);
+            this.btnModificar.Location = new System.Drawing.Point(3, 106);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
             this.btnModificar.Size = new System.Drawing.Size(240, 44);
@@ -374,7 +427,7 @@
             this.btnAgregar.ForeColor = System.Drawing.Color.White;
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(3, 100);
+            this.btnAgregar.Location = new System.Drawing.Point(3, 63);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
             this.btnAgregar.Size = new System.Drawing.Size(240, 44);
@@ -766,5 +819,9 @@
         private PictureBox pictureBox1;
         private Label lblTemporizador;
         private Label label1;
+        private Label lblTotalPrecio_data;
+        private Label lblRegistros_data;
+        private Label lblTotalPesos;
+        private Label lblRegistrosn;
     }
 }

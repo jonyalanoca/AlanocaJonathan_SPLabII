@@ -30,8 +30,7 @@ namespace FRMCartuchera
 
         private void frmCartuchera_Load(object sender, EventArgs e)
         {
-            Cartuchera<Utiles> cartuchera = new Cartuchera<Utiles>();
-            cartuchera.EventoPrecio +=Notificar;
+
             if(
             LapizDAO.LeerLapiz(ref this.cartuchera)==false ||
             GomaDAO.LeerGoma(ref this.cartuchera)==false ||
@@ -47,6 +46,7 @@ namespace FRMCartuchera
 
             this.pnlMenu.Size = new Size(63, 1);
             this.btnHamburguesa.Location = new Point(3, 3);
+            ActualizarTPrecioYTRegistros();
         }
         public void Notificar(string mensaje)
         {
@@ -113,7 +113,6 @@ namespace FRMCartuchera
                 frmOp.ShowDialog();
                 this.Show();
 
-                VisibleComboBox(frmOp.Opcion);
                 abilitarDesabilitarTodo();
                 VisibleComboBox(frmOp.Opcion);
                 this.agregarEnCurso = true;
@@ -162,6 +161,7 @@ namespace FRMCartuchera
                     MessageBox.Show(this.cartuchera - aux,"Atencion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dgvTabla.Rows.Clear();
                     CompletarTabla();
+                    ActualizarTPrecioYTRegistros();
                 }
                 else{
                     MessageBox.Show("No se realizacion cambios","Atencion", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -211,6 +211,7 @@ namespace FRMCartuchera
         {
             this.btnSerializar.Visible = !this.btnSerializar.Visible;
             this.btnDeserializar.Visible = !this.btnDeserializar.Visible;
+            
         }
 
         private void tckPrecio_Scroll(object sender, EventArgs e)
@@ -268,46 +269,50 @@ namespace FRMCartuchera
                 {
                     SacapuntasDAO.ModificarSPunta((Sacapuntas)auxUtil);
                 }
-
             }
-            else if (agregarEnCurso == true)
+            else if (agregarEnCurso == true)// modificar aca con el limite maximo
             {
                 Utiles nuevo=null;
-                int idAux = -1;
+                if(cartuchera.ListaUtiles.Count < cartuchera.Capacidad)
+                {
+                    int idAux = -1;
+                    if (cmbColor.Visible == true)
+                    {
+                        idAux = LapizDAO.UltimoId();
+                        ConsoleColor colorAux;
+                        Enum.TryParse<ConsoleColor>(cmbColor.SelectedValue.ToString(), out colorAux);
+                        nuevo = new Lapiz(idAux, tckPrecio.Value, txtMarca.Text, colorAux);
+
+                        LapizDAO.AgregarLapiz((Lapiz)nuevo);
+                    }
+                    else if (cmbMaterial.Visible == true)
+                    {
+                        idAux = SacapuntasDAO.UltimoId();
+                        Materiales materialAux;
+                        Enum.TryParse<Materiales>(cmbMaterial.SelectedValue.ToString(), out materialAux);
+                        nuevo = new Sacapuntas(idAux, tckPrecio.Value, txtMarca.Text, materialAux);
+
+                        SacapuntasDAO.AgregarSPunta((Sacapuntas)nuevo);
+                    }
+                    else if (cmbTipo.Visible == true)
+                    {
+                        idAux = GomaDAO.UltimoId();
+                        Tipos tipoAux;
+                        Enum.TryParse<Tipos>(cmbTipo.SelectedValue.ToString(), out tipoAux);
+                        nuevo = new Goma(idAux, tckPrecio.Value, txtMarca.Text, tipoAux);
+
+                        GomaDAO.AgregarGoma((Goma)nuevo);
+                    }
+                }
                 agregarEnCurso = false;
-                if (cmbColor.Visible==true)
-                {
-                    idAux=LapizDAO.UltimoId();
-                    ConsoleColor colorAux;
-                    Enum.TryParse<ConsoleColor>(cmbColor.SelectedValue.ToString(), out colorAux);
-                    nuevo = new Lapiz(idAux, tckPrecio.Value, txtMarca.Text, colorAux);
-
-                    LapizDAO.AgregarLapiz((Lapiz)nuevo);
-                }
-                else if (cmbMaterial.Visible == true)
-                {
-                    idAux = SacapuntasDAO.UltimoId();
-                    Materiales materialAux;
-                    Enum.TryParse<Materiales>(cmbMaterial.SelectedValue.ToString(), out materialAux);
-                    nuevo = new Sacapuntas(idAux, tckPrecio.Value, txtMarca.Text, materialAux);
-
-                    SacapuntasDAO.AgregarSPunta((Sacapuntas)nuevo);
-                }
-                else if (cmbTipo.Visible == true)
-                {
-                    idAux = GomaDAO.UltimoId();
-                    Tipos tipoAux;
-                    Enum.TryParse<Tipos>(cmbTipo.SelectedValue.ToString(), out tipoAux);
-                    nuevo = new Goma(idAux, tckPrecio.Value, txtMarca.Text, tipoAux);
-
-                    GomaDAO.AgregarGoma((Goma)nuevo);
-                }
+                
                 MessageBox.Show(cartuchera + nuevo, "Cambios importantes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             dgvTabla.Rows.Clear();
             CompletarTabla();
             abilitarDesabilitarTodo();
             ResetearCampos();
+            ActualizarTPrecioYTRegistros();
         }
         private void CompletarDatosPorId(int auxId)
         {
@@ -384,7 +389,6 @@ namespace FRMCartuchera
         {
             MessageBox.Show("Se exedio el limite de $500.\nSe guardo el Ticket en un archivo ticket.txt en Mis Documentos","Infomación de tickets",MessageBoxButtons.OK, MessageBoxIcon.Information);
             string ruta = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            ;
             using (StreamWriter sw = new StreamWriter($"{ruta}\\tickets.txt",true)){
                 sw.WriteLine(mensaje);
             };
@@ -484,6 +488,16 @@ namespace FRMCartuchera
                 }
                 tiempo++;
             }
+        }
+
+        private void pnlMenu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void ActualizarTPrecioYTRegistros()
+        {
+            this.lblRegistros_data.Text = this.cartuchera.ListaUtiles.Count.ToString();
+            this.lblTotalPrecio_data.Text = this.cartuchera.PrecioTotatCartuchera.ToString();
         }
     }
 }

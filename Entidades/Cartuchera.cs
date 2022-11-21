@@ -18,7 +18,7 @@ namespace Entidades
        
         public Cartuchera()
         {
-            this.capacidad = 20;//Limite maximo de la cartuchera
+            this.capacidad = 10;//Limite maximo de la cartuchera
             this.listaUtiles = new List<T>();
             
         }
@@ -36,11 +36,14 @@ namespace Entidades
                 return precioTotal; 
             }
         }
+
+        public int Capacidad { get => capacidad; set => capacidad = value; }
+
         public static string operator +(Cartuchera<T> cartuchera, T util)
         {
             try
             {
-                if (cartuchera.capacidad >= cartuchera.listaUtiles.Count)
+                if (cartuchera.capacidad <= cartuchera.listaUtiles.Count)
                 {
                     throw new CartucheraLlenaException();
                 }
