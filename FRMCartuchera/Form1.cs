@@ -442,6 +442,7 @@ namespace FRMCartuchera
                 if (auxId >= 2000 && auxId < 3000)
                 {
                     Lapiz auxLapiz = (Lapiz)cartuchera.BuscarUtilPorId(auxId);
+                    string viejaInfo = auxLapiz.Detalles();
                     if (ofdAbrirArchivo.ShowDialog() == DialogResult.OK)
                     {
                         ruta = ofdAbrirArchivo.FileName;
@@ -459,6 +460,7 @@ namespace FRMCartuchera
                         }
                         dgvTabla.Rows.Clear();
                         CompletarTabla();
+                        MessageBox.Show(auxLapiz.CambioPorDeserializacion(viejaInfo), "Cambios Importantes",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     }
                 }
                 else

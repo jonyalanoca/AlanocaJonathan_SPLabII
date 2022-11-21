@@ -148,9 +148,12 @@ namespace Entidades
             }
             return id;
         }
-        public static int SumarUnoPorID(this Lapiz variable)
+        public static string CambioPorDeserializacion(this Lapiz variable, string viejaInfo)
         {
-            return (3+1);
+            StringBuilder sb = new();
+            sb.AppendLine($"DATOS ANTERIORES DEL LAPIZ\n{viejaInfo}");
+            sb.AppendLine($"DATOS NUEVOS DEL LAPIZ\n{variable.Detalles()}");
+            return (sb.ToString());
         }
     }
 }
