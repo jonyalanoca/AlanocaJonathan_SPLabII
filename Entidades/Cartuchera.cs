@@ -15,10 +15,12 @@ namespace Entidades
         public event NotificarLimePrecio EventoPrecio;
         private List<T> listaUtiles;
         private int capacidad;
+       
         public Cartuchera()
         {
-            this.capacidad = 10;//ver si esto
+            this.capacidad = 20;//Limite maximo de la cartuchera
             this.listaUtiles = new List<T>();
+            
         }
    
         public List<T> ListaUtiles { get => this.listaUtiles; set => this.listaUtiles = value; }

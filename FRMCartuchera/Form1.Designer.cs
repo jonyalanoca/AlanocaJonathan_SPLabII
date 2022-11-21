@@ -30,10 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCartuchera));
             this.pnlTitulo = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnMaximizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblTemporizador = new System.Windows.Forms.Label();
             this.btnHamburguesa = new System.Windows.Forms.Button();
             this.btnTickets = new System.Windows.Forms.Button();
             this.btnDeserializar = new System.Windows.Forms.Button();
@@ -72,6 +76,7 @@
             this.lblId = new System.Windows.Forms.Label();
             this.ofdAbrirArchivo = new System.Windows.Forms.OpenFileDialog();
             this.pnlTitulo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlMenu.SuspendLayout();
             this.pnlBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
@@ -85,6 +90,8 @@
             // pnlTitulo
             // 
             this.pnlTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(141)))), ((int)(((byte)(179)))));
+            this.pnlTitulo.Controls.Add(this.textBox1);
+            this.pnlTitulo.Controls.Add(this.pictureBox1);
             this.pnlTitulo.Controls.Add(this.btnMinimizar);
             this.pnlTitulo.Controls.Add(this.btnMaximizar);
             this.pnlTitulo.Controls.Add(this.btnCerrar);
@@ -95,6 +102,30 @@
             this.pnlTitulo.Size = new System.Drawing.Size(1032, 30);
             this.pnlTitulo.TabIndex = 2;
             this.pnlTitulo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlTitulo_Paint);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(141)))), ((int)(((byte)(179)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox1.Location = new System.Drawing.Point(30, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(911, 28);
+            this.textBox1.TabIndex = 15;
+            this.textBox1.Text = "CARTUCHERA MAGICA";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
             // 
             // btnMinimizar
             // 
@@ -156,6 +187,8 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.pnlMenu.Controls.Add(this.label1);
+            this.pnlMenu.Controls.Add(this.lblTemporizador);
             this.pnlMenu.Controls.Add(this.btnHamburguesa);
             this.pnlMenu.Controls.Add(this.btnTickets);
             this.pnlMenu.Controls.Add(this.btnDeserializar);
@@ -170,6 +203,28 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(240, 534);
             this.pnlMenu.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(74, 464);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(88, 21);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "__OnLine__";
+            // 
+            // lblTemporizador
+            // 
+            this.lblTemporizador.AutoSize = true;
+            this.lblTemporizador.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTemporizador.ForeColor = System.Drawing.Color.White;
+            this.lblTemporizador.Location = new System.Drawing.Point(74, 485);
+            this.lblTemporizador.Name = "lblTemporizador";
+            this.lblTemporizador.Size = new System.Drawing.Size(84, 40);
+            this.lblTemporizador.TabIndex = 15;
+            this.lblTemporizador.Text = "0:0:0";
             // 
             // btnHamburguesa
             // 
@@ -646,7 +701,10 @@
             this.Text = "Cartuchera magica";
             this.Load += new System.EventHandler(this.frmCartuchera_Load);
             this.pnlTitulo.ResumeLayout(false);
+            this.pnlTitulo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlMenu.ResumeLayout(false);
+            this.pnlMenu.PerformLayout();
             this.pnlBody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).EndInit();
             this.grpDatos.ResumeLayout(false);
@@ -704,5 +762,9 @@
         private DataGridViewTextBoxColumn TIPO;
         private Button btnDescartar;
         private OpenFileDialog ofdAbrirArchivo;
+        private TextBox textBox1;
+        private PictureBox pictureBox1;
+        private Label lblTemporizador;
+        private Label label1;
     }
 }

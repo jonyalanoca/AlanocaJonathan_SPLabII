@@ -16,6 +16,7 @@ namespace FRMCartuchera
         private Cartuchera<Utiles> cartuchera;
         private bool modificacionEnCurso;
         private bool agregarEnCurso;
+        private Task hilo;
         public frmCartuchera()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace FRMCartuchera
             this.modificacionEnCurso = false;
             this.agregarEnCurso = false;
             this.menuDesplegado = false;
+            this.hilo = Task.Run(Temporizador);
         }
 
         private void frmCartuchera_Load(object sender, EventArgs e)
@@ -464,7 +466,24 @@ namespace FRMCartuchera
             
             this.btnSerializar.Visible = false;
             this.btnDeserializar.Visible = false;
-
+        }
+        private void Temporizador()
+        {
+            int tiempo = 0;
+            while (true)
+            {
+                Thread.Sleep(1000);
+                if (lblTemporizador.InvokeRequired)
+                {
+                    Action actAux = new Action(() => this.lblTemporizador.Text = TransformadorTiempo.Transformar(tiempo));
+                    lblTemporizador.BeginInvoke(actAux);
+                }
+                else
+                {
+                    this.lblTemporizador.Text = TransformadorTiempo.Transformar(tiempo);
+                }
+                tiempo++;
+            }
         }
     }
 }
