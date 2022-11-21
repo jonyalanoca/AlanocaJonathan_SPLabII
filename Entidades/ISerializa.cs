@@ -8,5 +8,7 @@ namespace Entidades
 {
     public interface ISerializa
     {
+        void SerializarJson(string nombre);
+        void SerializarXml(string nombre);
     }
 }

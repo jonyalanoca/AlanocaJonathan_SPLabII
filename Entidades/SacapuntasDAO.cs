@@ -146,5 +146,10 @@ namespace Entidades
             }
             return id;
         }
+        //public static string sadf(this int param)
+        //{
+
+        //    return "Asdfas";
+        //}
     }
 }

@@ -70,6 +70,7 @@
             this.lblMarca = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
+            this.ofdAbrirArchivo = new System.Windows.Forms.OpenFileDialog();
             this.pnlTitulo.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.pnlBody.SuspendLayout();
@@ -225,6 +226,8 @@
             this.btnDeserializar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDeserializar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDeserializar.UseVisualStyleBackColor = false;
+            this.btnDeserializar.Visible = false;
+            this.btnDeserializar.Click += new System.EventHandler(this.btnDeserializar_Click);
             // 
             // btnSerializar
             // 
@@ -245,6 +248,8 @@
             this.btnSerializar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSerializar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSerializar.UseVisualStyleBackColor = false;
+            this.btnSerializar.Visible = false;
+            this.btnSerializar.Click += new System.EventHandler(this.btnSerializar_Click);
             // 
             // btnMenuSerializar
             // 
@@ -635,9 +640,10 @@
             this.Controls.Add(this.pnlTitulo);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmCartuchera";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Cartuchera magica";
             this.Load += new System.EventHandler(this.frmCartuchera_Load);
             this.pnlTitulo.ResumeLayout(false);
             this.pnlMenu.ResumeLayout(false);
@@ -697,5 +703,6 @@
         private DataGridViewTextBoxColumn MATERIAL;
         private DataGridViewTextBoxColumn TIPO;
         private Button btnDescartar;
+        private OpenFileDialog ofdAbrirArchivo;
     }
 }

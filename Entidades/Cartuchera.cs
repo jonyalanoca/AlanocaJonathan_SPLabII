@@ -81,7 +81,7 @@ namespace Entidades
             {
                 sb.AppendLine(i.Detalles());
             }
-            sb.AppendLine("--------------------------------------------------");
+            sb.AppendLine("----------------------------------------------------------------");
             return sb.ToString();
 
         }

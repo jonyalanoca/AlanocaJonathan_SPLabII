@@ -12,7 +12,7 @@ namespace FRMCartuchera
 {
     public partial class frmCartuchera : Form
     {
-        private bool menuDesplegado = false;
+        private bool menuDesplegado;
         private Cartuchera<Utiles> cartuchera;
         private bool modificacionEnCurso;
         private bool agregarEnCurso;
@@ -23,6 +23,7 @@ namespace FRMCartuchera
             cartuchera.EventoPrecio += CapturarCartuchera;
             this.modificacionEnCurso = false;
             this.agregarEnCurso = false;
+            this.menuDesplegado = false;
         }
 
         private void frmCartuchera_Load(object sender, EventArgs e)
@@ -42,7 +43,8 @@ namespace FRMCartuchera
             cmbMaterial.DataSource= Enum.GetValues(typeof(Materiales));
             cmbTipo.DataSource= Enum.GetValues(typeof(Tipos));
 
-
+            this.pnlMenu.Size = new Size(63, 1);
+            this.btnHamburguesa.Location = new Point(3, 3);
         }
         public void Notificar(string mensaje)
         {
@@ -58,13 +60,13 @@ namespace FRMCartuchera
         {
             if (this.menuDesplegado == false)
             {
-                this.pnlMenu.Size = new Size(63, 1);
-                this.btnHamburguesa.Location = new Point(3,3);
+                this.pnlMenu.Size = new Size(240, 1);
+                this.btnHamburguesa.Location = new Point(192, 3);   
             }
             else
             {
-                this.pnlMenu.Size = new Size(240, 1);
-                this.btnHamburguesa.Location = new Point(192, 3);
+                this.pnlMenu.Size = new Size(63, 1);
+                this.btnHamburguesa.Location = new Point(3, 3);
             }
             this.menuDesplegado = !this.menuDesplegado;
         }
@@ -381,7 +383,7 @@ namespace FRMCartuchera
             MessageBox.Show("Se exedio el limite de $500.\nSe guardo el Ticket en un archivo ticket.txt en Mis Documentos","Infomación de tickets",MessageBoxButtons.OK, MessageBoxIcon.Information);
             string ruta = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             ;
-            using (StreamWriter sw = new StreamWriter($"{ruta}\\tickets.txt")){
+            using (StreamWriter sw = new StreamWriter($"{ruta}\\tickets.txt",true)){
                 sw.WriteLine(mensaje);
             };
         }
@@ -406,6 +408,63 @@ namespace FRMCartuchera
                 MessageBox.Show("No se pudieron leer los tickets \n-Verifique que el archivos ticket.txt se encuntra en Mis Documentos.\n-Aun no se alcanzo el limite de $500", "Infomación de tickets", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
+        }
+
+        private void btnSerializar_Click(object sender, EventArgs e)
+        {
+            this.btnSerializar.Visible = false;
+            this.btnDeserializar.Visible = false;
+            int auxId=ObtenerIdDeTabla();
+            if(auxId>=2000 && auxId<3000){
+                Lapiz auxLapiz=(Lapiz)cartuchera.BuscarUtilPorId(auxId);
+                ((ISerializa)auxLapiz).SerializarJson($"Lapiz_{auxId}");
+                ((ISerializa)auxLapiz).SerializarXml($"Lapiz_{auxId}");
+                MessageBox.Show($"Se Serializó en Json y una copia en XML del lapiz en Mis Documentos.\nAchivos Json: Lapiz_{auxId}.txt\nAchivos XML: Lapiz_{auxId}.xml", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un lapiz de la tabla.\nRecomendacion: son del 2000 al 2999", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnDeserializar_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta= MessageBox.Show("Esta Funcion Reemplaza los valores del Lapiz seleccionado por los del archivo serializado.\n¿Desea Continuar?", "Atencion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (respuesta == DialogResult.OK)
+            {
+                string ruta;
+                int auxId = ObtenerIdDeTabla();
+                if (auxId >= 2000 && auxId < 3000)
+                {
+                    Lapiz auxLapiz = (Lapiz)cartuchera.BuscarUtilPorId(auxId);
+                    if (ofdAbrirArchivo.ShowDialog() == DialogResult.OK)
+                    {
+                        ruta = ofdAbrirArchivo.FileName;
+                        if (ruta.Contains(".txt"))
+                        {
+                            ((IDeserializa)auxLapiz).SerializarJson(ruta);
+                        }
+                        else if (ruta.Contains(".xml"))
+                        {
+                            ((IDeserializa)auxLapiz).SerializarXml(ruta);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El archivo no corresponde a un json o xml", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        dgvTabla.Rows.Clear();
+                        CompletarTabla();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un lapiz de la tabla.\nRecomendacion: son del 2000 al 2999", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            
+            this.btnSerializar.Visible = false;
+            this.btnDeserializar.Visible = false;
+
         }
     }
 }

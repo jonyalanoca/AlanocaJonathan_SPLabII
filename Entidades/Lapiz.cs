@@ -23,7 +23,14 @@ namespace Entidades
         }
 
         public ConsoleColor Color { get => color; set => color = value; }
-
+        private string ObtenerRuta
+        {
+            get
+            {
+                string ruta = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                return ruta;
+            }
+        }
         public override string Detalles()
         {
             StringBuilder sb = new StringBuilder();
@@ -32,10 +39,29 @@ namespace Entidades
             sb.AppendLine($"-Color: {this.color}");
             return sb.ToString();
         }
-        public void CompletarTabla( )
+        void ISerializa.SerializarJson(string nombre)
         {
-           
+            Serializador<Lapiz>.SerializarJason(this,$"{ObtenerRuta}\\{nombre}.txt");
         }
-
+        void IDeserializa.SerializarJson(string nombre)
+        {
+            Lapiz auxLapiz=Serializador<Lapiz>.DeserializarJason(nombre);
+            this.precio = auxLapiz.Precio;
+            this.marca = auxLapiz.Marca;
+            this.color = auxLapiz.Color;
+            LapizDAO.ModificarLapiz(this);
+        }
+        void ISerializa.SerializarXml(string nombre)
+        {
+            Serializador<Lapiz>.SerializarXml(this, $"{ObtenerRuta}\\{nombre}.xml");
+        }
+        void IDeserializa.SerializarXml(string nombre)
+        {
+            Lapiz auxLapiz=Serializador<Lapiz>.DeserializarXml(nombre);
+            this.precio = auxLapiz.Precio;
+            this.marca = auxLapiz.Marca;
+            this.color = auxLapiz.Color;
+            LapizDAO.ModificarLapiz(this);
+        }
     }
 }
