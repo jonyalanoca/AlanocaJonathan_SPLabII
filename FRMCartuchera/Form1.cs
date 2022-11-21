@@ -20,6 +20,7 @@ namespace FRMCartuchera
         {
             InitializeComponent();
             this.cartuchera = new Cartuchera<Utiles>();
+            cartuchera.EventoPrecio += CapturarCartuchera;
             this.modificacionEnCurso = false;
             this.agregarEnCurso = false;
         }
@@ -374,6 +375,37 @@ namespace FRMCartuchera
         private void tckPrecio_Scroll_1(object sender, EventArgs e)
         {
             lblPrecio_Data.Text = tckPrecio.Value.ToString();
+        }
+        private void CapturarCartuchera(string mensaje)
+        {
+            MessageBox.Show("Se exedio el limite de $500.\nSe guardo el Ticket en un archivo ticket.txt en Mis Documentos","Infomación de tickets",MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string ruta = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            ;
+            using (StreamWriter sw = new StreamWriter($"{ruta}\\tickets.txt")){
+                sw.WriteLine(mensaje);
+            };
+        }
+
+        private void btnTickets_Click(object sender, EventArgs e)
+        {
+            string ruta = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            try
+            {
+                using (StreamReader sr = new StreamReader($"{ruta}\\tickets.txt"))
+                {
+
+                    string auxString=sr.ReadToEnd();
+                    frmTicket frmTick = new frmTicket(auxString);
+                    this.Hide();
+                    frmTick.ShowDialog();
+                    this.Show();
+                };
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudieron leer los tickets \n-Verifique que el archivos ticket.txt se encuntra en Mis Documentos.\n-Aun no se alcanzo el limite de $500", "Infomación de tickets", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }

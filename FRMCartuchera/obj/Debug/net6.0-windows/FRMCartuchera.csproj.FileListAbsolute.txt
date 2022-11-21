@@ -26,3 +26,4 @@ C:\Users\jonya\Desktop\SegundoParcialLabII\FRMCartuchera\obj\Debug\net6.0-window
 C:\Users\jonya\Desktop\SegundoParcialLabII\FRMCartuchera\obj\Debug\net6.0-windows\ref\FRMCartuchera.dll
 C:\Users\jonya\Desktop\SegundoParcialLabII\FRMCartuchera\obj\Debug\net6.0-windows\FRMCartuchera.Properties.Resources.resources
 C:\Users\jonya\Desktop\SegundoParcialLabII\FRMCartuchera\obj\Debug\net6.0-windows\FRMCartuchera.frmOpcion.resources
+C:\Users\jonya\Desktop\SegundoParcialLabII\FRMCartuchera\obj\Debug\net6.0-windows\FRMCartuchera.frmTicket.resources

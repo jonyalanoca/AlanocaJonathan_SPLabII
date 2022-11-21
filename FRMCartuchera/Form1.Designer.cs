@@ -204,6 +204,7 @@
             this.btnTickets.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTickets.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTickets.UseVisualStyleBackColor = true;
+            this.btnTickets.Click += new System.EventHandler(this.btnTickets_Click);
             // 
             // btnDeserializar
             // 

@@ -27,6 +27,7 @@ namespace Entidades
         public override string Detalles()
         {
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"DETALLES DEL LAPIZ:");
             sb.Append(base.Detalles());
             sb.AppendLine($"-Color: {this.color}");
             return sb.ToString();

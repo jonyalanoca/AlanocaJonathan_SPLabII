@@ -1,0 +1,77 @@
+Informe Cartuchar del 20/11/2022 21:42:04
+Detalles del Util:
+-ID: 2004
+-Precio: 222
+-Marca: pepito
+-Color: Black
+
+Detalles del Util:
+-ID: 2005
+-Precio: 0
+-Marca: pepito2
+-Color: DarkGray
+
+Detalles del Util:
+-ID: 2006
+-Precio: 104
+-Marca: pepito23
+-Color: DarkGray
+
+Detalles del Util:
+-ID: 2007
+-Precio: 0
+-Marca: fasdf
+-Color: DarkBlue
+
+Detalles del Util:
+-ID: 2008
+-Precio: 240
+-Marca: uh
+-Color: DarkRed
+
+Detalles del Util:
+-ID: 2009
+-Precio: 0
+-Marca: 
+-Color: Black
+
+Detalles del Util:
+-ID: 2010
+-Precio: 0
+-Marca: 
+-Color: Black
+
+Detalles del Util:
+-ID: 1000
+-Precio: 122
+-Marca: PEPE
+-Tipo de goma: Simple
+Detalles del Util:
+-ID: 1002
+-Precio: 12
+-Marca: faber
+-Tipo de goma: Doble
+Detalles del Util:
+-ID: 1004
+-Precio: 217
+-Marca: popo1
+-Tipo de goma: Simple
+Detalles del Util:
+-ID: 3005
+-Precio: 247
+-Marca: 13123123123
+-Material: Aluminio
+
+Detalles del Util:
+-ID: 3006
+-Precio: 85
+-Marca: 1231231
+-Material: Plastico
+
+Detalles del Util:
+-ID: 3007
+-Precio: 248
+-Marca: joanthan
+-Material: Plastico
+
+

@@ -23,7 +23,6 @@ namespace Entidades
         public virtual string Detalles()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Detalles del Util:");
             sb.AppendLine($"-ID: {this.id}");
             sb.AppendLine($"-Precio: {this.Precio}");
             sb.AppendLine($"-Marca: {this.Marca}");

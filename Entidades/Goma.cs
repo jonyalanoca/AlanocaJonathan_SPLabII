@@ -23,8 +23,9 @@ namespace Entidades
         public override string Detalles()
         {
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"DETALLES DE LA GOMA:");
             sb.Append(base.Detalles());
-            sb.Append($"-Tipo de goma: {this.tipo}");
+            sb.AppendLine($"-Tipo de goma: {this.tipo}");
             return sb.ToString();
         }
     }

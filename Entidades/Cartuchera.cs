@@ -38,13 +38,13 @@ namespace Entidades
         {
             try
             {
-                if (cartuchera.capacidad == cartuchera.listaUtiles.Count)
+                if (cartuchera.capacidad >= cartuchera.listaUtiles.Count)
                 {
                     throw new CartucheraLlenaException();
                 }
                 else if (cartuchera.PrecioTotatCartuchera + util.Precio > 500)
                 {
-                    //cartuchera.EventoPrecio.Invoke("asd");
+                    cartuchera.EventoPrecio.Invoke(cartuchera.InfoCartuchera());
                 }
                 cartuchera.listaUtiles.Add(util);
             }catch(Exception ex)
@@ -71,6 +71,19 @@ namespace Entidades
                 }
             }
             throw new Exception("No se encontro ningun ");
+        }
+        private string InfoCartuchera()
+        {
+            
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Informe Cartuchar del {DateTime.Now}");
+            foreach (var i in listaUtiles)
+            {
+                sb.AppendLine(i.Detalles());
+            }
+            sb.AppendLine("--------------------------------------------------");
+            return sb.ToString();
+
         }
     }
 

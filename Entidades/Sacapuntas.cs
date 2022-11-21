@@ -25,6 +25,7 @@ namespace Entidades
         public override string Detalles()
         {
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"DETALLES DEL SACAPUNTAS:");
             sb.Append(base.Detalles());
             sb.AppendLine($"-Material: {this.material}");
             return sb.ToString();
