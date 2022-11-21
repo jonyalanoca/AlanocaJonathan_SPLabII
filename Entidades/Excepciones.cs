@@ -12,4 +12,10 @@ namespace Entidades
         public CartucheraLlenaException(string mensaje) : base(mensaje) { }
         public CartucheraLlenaException(string mensaje,Exception ex) : base(mensaje, ex) { }
     }
+    public class SinCoincidenciasException : Exception
+    {
+        public SinCoincidenciasException() : base("No existe el Util con ese ID") { }
+        public SinCoincidenciasException(string mensaje) : base(mensaje) { }
+        public SinCoincidenciasException(string mensaje, Exception ex) : base(mensaje, ex) { }
+    }
 }

@@ -122,7 +122,7 @@ namespace Entidades
         {
             int id = -1;
             SqlConnection conSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");
-            string consulta = "SELECT MAX(ID_SPUNTA)+1 FROM SACAPUNTAS";
+            string consulta = "SELECT MAX(ID_SPUNTA) FROM SACAPUNTAS";
             SqlCommand comando = new SqlCommand(consulta, conSql);
             comando.CommandType = System.Data.CommandType.Text;
             conSql.Open();
@@ -146,10 +146,6 @@ namespace Entidades
             }
             return id;
         }
-        //public static string sadf(this int param)
-        //{
 
-        //    return "Asdfas";
-        //}
     }
 }

@@ -124,7 +124,7 @@ namespace Entidades
         {
             int id = -1;
             SqlConnection conSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");
-            string consulta = "SELECT MAX(ID_GOMA)+1 FROM GOMAS";
+            string consulta = "SELECT MAX(ID_GOMA) FROM GOMAS";
             SqlCommand comando = new SqlCommand(consulta, conSql);
             comando.CommandType = System.Data.CommandType.Text;
             conSql.Open();
@@ -135,6 +135,10 @@ namespace Entidades
                 sr.Read();
                 id=int.Parse(sr[0].ToString());
             }
+            catch(Exception ex)
+            {
+                id = 1000;
+            }
             finally
             {
                 if (conSql.State == System.Data.ConnectionState.Open)
@@ -143,6 +147,10 @@ namespace Entidades
                 }
             }
             return id;
+        }
+        public static int SumarUnoPorID(this Lapiz variable)
+        {
+            return (3+1);
         }
     }
 }

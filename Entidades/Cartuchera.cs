@@ -75,7 +75,7 @@ namespace Entidades
                     return i;
                 }
             }
-            throw new Exception("No se encontro ningun ");
+            throw new SinCoincidenciasException("No se encontro ningun ");
         }
         private string InfoCartuchera()
         {

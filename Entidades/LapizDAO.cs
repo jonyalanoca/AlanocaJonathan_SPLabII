@@ -122,7 +122,7 @@ namespace Entidades
         {
             int id = -1;
             SqlConnection conSql = new SqlConnection("Server=. ;DataBase=UTILES;Trusted_Connection=True");
-            string consulta = "SELECT MAX(ID_LAPIZ)+1 FROM LAPICES";
+            string consulta = "SELECT MAX(ID_LAPIZ) FROM LAPICES";
             SqlCommand comando = new SqlCommand(consulta, conSql);
             comando.CommandType = System.Data.CommandType.Text;
             conSql.Open();
@@ -132,6 +132,11 @@ namespace Entidades
             {
                 sr.Read();
                 id = int.Parse(sr[0].ToString());
+               
+            }
+            catch(Exception ex)
+            {
+                id = 2000;
             }
             finally
             {

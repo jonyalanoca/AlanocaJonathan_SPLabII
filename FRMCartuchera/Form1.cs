@@ -50,7 +50,6 @@ namespace FRMCartuchera
         }
         public void Notificar(string mensaje)
         {
-            MessageBox.Show(mensaje, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -275,33 +274,33 @@ namespace FRMCartuchera
                 Utiles nuevo=null;
                 if(cartuchera.ListaUtiles.Count < cartuchera.Capacidad)
                 {
-                    int idAux = -1;
                     if (cmbColor.Visible == true)
                     {
-                        idAux = LapizDAO.UltimoId();
                         ConsoleColor colorAux;
                         Enum.TryParse<ConsoleColor>(cmbColor.SelectedValue.ToString(), out colorAux);
-                        nuevo = new Lapiz(idAux, tckPrecio.Value, txtMarca.Text, colorAux);
+                        nuevo = new Lapiz(1, tckPrecio.Value, txtMarca.Text, colorAux);
 
                         LapizDAO.AgregarLapiz((Lapiz)nuevo);
+                        nuevo.Id=LapizDAO.UltimoId();
                     }
                     else if (cmbMaterial.Visible == true)
                     {
-                        idAux = SacapuntasDAO.UltimoId();
+                        
                         Materiales materialAux;
                         Enum.TryParse<Materiales>(cmbMaterial.SelectedValue.ToString(), out materialAux);
-                        nuevo = new Sacapuntas(idAux, tckPrecio.Value, txtMarca.Text, materialAux);
+                        nuevo = new Sacapuntas(1, tckPrecio.Value, txtMarca.Text, materialAux);
 
                         SacapuntasDAO.AgregarSPunta((Sacapuntas)nuevo);
+                        nuevo.Id=SacapuntasDAO.UltimoId();
                     }
                     else if (cmbTipo.Visible == true)
-                    {
-                        idAux = GomaDAO.UltimoId();
+                    {                        
                         Tipos tipoAux;
                         Enum.TryParse<Tipos>(cmbTipo.SelectedValue.ToString(), out tipoAux);
-                        nuevo = new Goma(idAux, tckPrecio.Value, txtMarca.Text, tipoAux);
+                        nuevo = new Goma(1, tckPrecio.Value, txtMarca.Text, tipoAux);
 
                         GomaDAO.AgregarGoma((Goma)nuevo);
+                        nuevo.Id = GomaDAO.UltimoId();
                     }
                 }
                 agregarEnCurso = false;
