@@ -1,6 +1,6 @@
 # CARTUCHERA DIGITAL
 
-![](https://img.shields.io/static/v1?label=Cartuchera_Digital&message=v1.0&color=blue) 
+![](https://img.shields.io/static/v1?label=Cartuchera_Digital&message=v1.0&color=blue) <br>
 `🧑‍💻 Jonathan Alanoca`
 
 
@@ -61,5 +61,5 @@ Cartuchera Digital es un programa escrito en `c# - Windows forms` que nos permit
 ![Sin título](https://user-images.githubusercontent.com/85081072/203154180-4f90d0e5-45ce-4c29-ac0f-74dd954a4995.jpg)
 ------------
 Gracias por visitar.!
-Programa hecho con mucho 🧡 por **Jonathan Alanoca**
+Programa hecho con mucho 🧡 por **Jonathan Alanoca**<br>
 Proyecto para el Segundo cuatrimestre **UTNFra**

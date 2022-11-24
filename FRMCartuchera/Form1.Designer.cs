@@ -240,11 +240,11 @@
             this.lblTotalPesos.AutoSize = true;
             this.lblTotalPesos.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTotalPesos.ForeColor = System.Drawing.Color.White;
-            this.lblTotalPesos.Location = new System.Drawing.Point(90, 432);
+            this.lblTotalPesos.Location = new System.Drawing.Point(61, 432);
             this.lblTotalPesos.Name = "lblTotalPesos";
-            this.lblTotalPesos.Size = new System.Drawing.Size(50, 17);
+            this.lblTotalPesos.Size = new System.Drawing.Size(79, 17);
             this.lblTotalPesos.TabIndex = 18;
-            this.lblTotalPesos.Text = "$ Total:";
+            this.lblTotalPesos.Text = "Precio Total:";
             // 
             // lblRegistrosn
             // 
@@ -670,9 +670,9 @@
             this.lblPrecio_Data.AutoSize = true;
             this.lblPrecio_Data.Location = new System.Drawing.Point(232, 51);
             this.lblPrecio_Data.Name = "lblPrecio_Data";
-            this.lblPrecio_Data.Size = new System.Drawing.Size(25, 15);
+            this.lblPrecio_Data.Size = new System.Drawing.Size(13, 15);
             this.lblPrecio_Data.TabIndex = 21;
-            this.lblPrecio_Data.Text = "200";
+            this.lblPrecio_Data.Text = "0";
             // 
             // lblMeneda
             // 

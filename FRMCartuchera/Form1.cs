@@ -497,8 +497,9 @@ namespace FRMCartuchera
         }
         private void ActualizarTPrecioYTRegistros()
         {
-            this.lblRegistros_data.Text = this.cartuchera.ListaUtiles.Count.ToString();
-            this.lblTotalPrecio_data.Text = this.cartuchera.PrecioTotatCartuchera.ToString();
+            string auxRegistros = $"{this.cartuchera.ListaUtiles.Count}/{this.cartuchera.Capacidad}";
+            this.lblRegistros_data.Text = auxRegistros;
+            this.lblTotalPrecio_data.Text = $"${this.cartuchera.PrecioTotatCartuchera}";
         }
     }
 }
