@@ -13,6 +13,8 @@ namespace Entidades
     {
         public delegate void NotificarLimePrecio(string mensaje);
         public event NotificarLimePrecio EventoPrecio;
+
+        
         private List<T> listaUtiles;
         private int capacidad;
        
@@ -90,6 +92,7 @@ namespace Entidades
             return sb.ToString();
 
         }
+
     }
 
 }

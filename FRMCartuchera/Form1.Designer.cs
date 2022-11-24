@@ -36,6 +36,7 @@
             this.btnMaximizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnFibron = new System.Windows.Forms.Button();
             this.lblTotalPrecio_data = new System.Windows.Forms.Label();
             this.lblRegistros_data = new System.Windows.Forms.Label();
             this.lblTotalPesos = new System.Windows.Forms.Label();
@@ -191,6 +192,7 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.pnlMenu.Controls.Add(this.btnFibron);
             this.pnlMenu.Controls.Add(this.lblTotalPrecio_data);
             this.pnlMenu.Controls.Add(this.lblRegistros_data);
             this.pnlMenu.Controls.Add(this.lblTotalPesos);
@@ -212,6 +214,16 @@
             this.pnlMenu.Size = new System.Drawing.Size(240, 534);
             this.pnlMenu.TabIndex = 3;
             this.pnlMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMenu_Paint);
+            // 
+            // btnFibron
+            // 
+            this.btnFibron.Location = new System.Drawing.Point(61, 3);
+            this.btnFibron.Name = "btnFibron";
+            this.btnFibron.Size = new System.Drawing.Size(137, 37);
+            this.btnFibron.TabIndex = 22;
+            this.btnFibron.Text = "Resaltar con fibron";
+            this.btnFibron.UseVisualStyleBackColor = true;
+            this.btnFibron.Click += new System.EventHandler(this.btnFibron_Click);
             // 
             // lblTotalPrecio_data
             // 
@@ -823,5 +835,6 @@
         private Label lblRegistros_data;
         private Label lblTotalPesos;
         private Label lblRegistrosn;
+        private Button btnFibron;
     }
 }

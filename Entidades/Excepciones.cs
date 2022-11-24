@@ -18,4 +18,10 @@ namespace Entidades
         public SinCoincidenciasException(string mensaje) : base(mensaje) { }
         public SinCoincidenciasException(string mensaje, Exception ex) : base(mensaje, ex) { }
     }
+    public class SinTintaException : Exception
+    {
+        public SinTintaException() : base("El se agoto la tinta.") { }
+        public SinTintaException(string mensaje) : base(mensaje) { }
+        public SinTintaException(string mensaje, Exception ex) : base(mensaje, ex) { }
+    }
 }

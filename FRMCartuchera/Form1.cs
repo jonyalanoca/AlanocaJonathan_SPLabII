@@ -14,6 +14,7 @@ namespace FRMCartuchera
     {
         private bool menuDesplegado;
         private Cartuchera<Utiles> cartuchera;
+        private Cartuchera<Fibron> cartuchera2;
         private bool modificacionEnCurso;
         private bool agregarEnCurso;
         private Task hilo;
@@ -26,6 +27,8 @@ namespace FRMCartuchera
             this.agregarEnCurso = false;
             this.menuDesplegado = false;
             this.hilo = Task.Run(Temporizador);
+            this.cartuchera2= new Cartuchera<Fibron>();
+            cartuchera2.EventoPrecio += CapturarCartuchera;
         }
 
         private void frmCartuchera_Load(object sender, EventArgs e)
@@ -47,6 +50,17 @@ namespace FRMCartuchera
             this.pnlMenu.Size = new Size(63, 1);
             this.btnHamburguesa.Location = new Point(3, 3);
             ActualizarTPrecioYTRegistros();
+
+
+            Fibron f1 = new Fibron(1, 5, "MarcaFibron1", 20);
+            f1.SinTintaEvento += CapturarFibronSinTinta;
+            Fibron f2 = new Fibron(1, 5, "MarcaFibron2", 30);
+            Fibron f3 = new Fibron(1, 10, "MarcaFibron3", 10);
+
+            string aux;
+            aux = this.cartuchera2 + f1;
+            aux = this.cartuchera2 + f2;
+            aux = this.cartuchera2 + f3;
         }
         public void Notificar(string mensaje)
         {
@@ -500,6 +514,20 @@ namespace FRMCartuchera
             string auxRegistros = $"{this.cartuchera.ListaUtiles.Count}/{this.cartuchera.Capacidad}";
             this.lblRegistros_data.Text = auxRegistros;
             this.lblTotalPrecio_data.Text = $"${this.cartuchera.PrecioTotatCartuchera}";
+        }
+        private void CapturarFibronSinTinta(string mensaje, Fibron fibron)
+        {
+            MessageBox.Show(mensaje,"Atencion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            fibron.Serialiar();
+
+        }
+
+        private void btnFibron_Click(object sender, EventArgs e)
+        {
+            Random rd = new Random();
+            
+            Fibron aux=this.cartuchera2.ListaUtiles[rd.Next(0, 2)];
+            aux.Resaltar(rd.Next(1, 10));
         }
     }
 }
